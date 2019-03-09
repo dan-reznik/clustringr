@@ -1,18 +1,17 @@
 # clustringr
 
-The goal of clustringr is to ...
+Cluster strings by edit distance.
 
 ## Installation
 
-You can install the released version of clustringr from [CRAN](https://CRAN.R-project.org) with:
+Currently, only a development version is available on github. 
 
 ``` r
-install.packages("clustringr")
+# install.packages('devtools')
+devtools::install_github('thomasp85/gganimate')
 ```
 
 ## Example
-
-This is a basic example which shows you how to solve a common problem:
 
 ``` r
 ## basic example code

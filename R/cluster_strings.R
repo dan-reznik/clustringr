@@ -64,12 +64,27 @@ prep_graph <- function(s_vec,clean,max_dl,method) {
   list(mtx=mtx,g=g)
 }
 
-cluster_strings <- function(s_vec,max_dl=3,clean=T,method="osa",plot=F) {
+#' Cluster Strings by Edge-Betweeness
+#'
+#' @param s_vec a vector of character strings
+#' @param max_dl max distance (typically damerau-levenshtein) between related strings.
+#' @param method one of "osa","lv","dl" (see stringdist's methods)
+#' @param clean whether to space-squish and de-duplicate s_vec
+#'
+#' @return a data frame containing cluster membership for each input string
+#' @export
+#'
+#' @examples
+#' s_vec <- c("alcool","alcohol","alcoholic","brandy","brandie","cachaça")
+#' cluster_strings_eb(s_vec)
+cluster_strings_eb <- function(s_vec,max_dl=3,clean=T,method="osa"
+                               #,plot=F
+                               ) {
   g <- prep_graph(s_vec,clean=clean,max_dl=max_dl,method=method)
   # other methods: cluster_label_prop(g), cluster_fast_greedy(g)
   g_clusters <- igraph::cluster_edge_betweenness(g$g)
   # components
-  if(plot) plot_graph(g_clusters,g$g)
+  # if(plot) plot_graph(g_clusters,g$g)
   g_memb <- igraph::membership(g_clusters)
   # return membership as tibble
   df <- tibble(node=names(g_memb),
@@ -90,7 +105,8 @@ cluster_strings <- function(s_vec,max_dl=3,clean=T,method="osa",plot=F) {
 #' @export
 #'
 #' @examples
-#' cluster_strings_cc(c("alcool","alcohol","alcoholic","brandy","brandie","cachaça"))
+#' s_vec <- c("alcool","alcohol","alcoholic","brandy","brandie","cachaça")
+#' cluster_strings_cc(s_vec)
 cluster_strings_cc <- function(s_vec,max_dl=3,method="osa",clean=T) {
   g <- prep_graph(s_vec,clean=clean,max_dl=max_dl,method=method)
   g_cc <- igraph::components(g$g)
