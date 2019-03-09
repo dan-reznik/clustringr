@@ -1,0 +1,23 @@
+Package: clustringr
+Type: Package
+Title: Cluster Strings by Fuzzy String Distance
+Version: 0.1.0
+Author: Dan S. Reznik
+Maintainer: Dan S. Reznik <dan-reznik@github.com>
+Description: Given a set of strings, this package will return a data frame
+    which assigns each original string to a cluster. Strings in the same
+    cluster are within a small "edit distance" from each other.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    magrittr,
+    dplyr,
+    stringi,
+    stringr,
+    stringdist,
+    igraph,
+    assertthat,
+    forcats,
+    rlang
+RoxygenNote: 6.1.1

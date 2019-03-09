@@ -1,0 +1,17 @@
+pacman::p_load(
+  devtools,
+  usethis,
+  roxygen2,
+  testthat,
+  knitr,
+  rmarkdown
+)
+use_package("magrittr")
+use_package("dplyr")
+use_package("forcats")
+use_package("stringi")
+use_package("stringr")
+use_package("stringdist")
+use_package("igraph")
+use_package("assertthat")
+use_package("rlang")
