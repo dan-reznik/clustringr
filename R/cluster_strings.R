@@ -91,8 +91,8 @@ cluster_strings_cc <- function(g) {
 #'
 #' @examples
 #' s_vec <- c("alcool","alcohol","alcoholic","brandy","brandie","cachaça")
-#' cluster_strings(s_vec,method="lv",max_dist=3,algo="cc")
-#'
+#' s_clust <- cluster_strings(s_vec,method="lv",max_dist=3,algo="cc")
+#' s_clust$df_clusters
 cluster_strings <- function(s_vec,
                             clean=T,
                             method="osa",

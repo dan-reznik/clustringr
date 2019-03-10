@@ -26,6 +26,6 @@ Cluster Strings by Edit-Distance
 }
 \examples{
 s_vec <- c("alcool","alcohol","alcoholic","brandy","brandie","cachaça")
-cluster_strings(s_vec,method="lv",max_dist=3,algo="cc")
-
+s_clust <- cluster_strings(s_vec,method="lv",max_dist=3,algo="cc")
+s_clust$df_clusters
 }
