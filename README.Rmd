@@ -15,13 +15,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# clustringr
+# clustringr 0.1.0
 
 `clustringr` clusters a vector of strings into groups where strings have small mutual "edit distance" (see `stringdist`). Internally it uses one of two graph algorithms: connected components, or edge-betweeness, from the `igraph` package.
 
 ## Usage
 
-In the example below a vector of 9 strings is clustered into 4 groups. The results come in the `df_clusters` element returned by cluster_strings_cc(), which uses the connected components algorithm. Notice that for every input string, a `cluster` id along with cluster `size` is supplied in `df_cluster`. Duplicates, left, right, and repeated spacing are automatically eliminated from the input vector.
+In the example below a vector of 9 strings is clustered into 4 groups by levenshtein distance and connected components. The call to `cluster_strings()` returns a list w/ 3 elements, the last of which is `df_clusters` which associates to every input string a `cluster`, along with its cluster `size`.
 
 ```{r, message=FALSE}
 library(clustringr)
@@ -34,28 +34,29 @@ s_vec <- c("alcool",
            "whisky",
            "whiskie",
            "whiskers")
-cluster_strings_cc(s_vec)$df_clusters
-```
-
-To use the edge-betweeness algorithm (slightly more robust with respect to breaking long transitive chains):
-
-```{r}
-cluster_strings_eb(s_vec)$df_clusters
+clusters <- cluster_strings(s_vec # input vector
+                            ,clean=T # dedup and squish
+                            ,method="lv" # levenshtein
+                            # use: method="dl" (dam-lev) or "osa" for opt-seq-align
+                            ,max_dist=3 # max edit distance for neighbors
+                            ,algo="cc" # connected components
+                            # use algo="eb" for edge-betweeness
+                            )
+clusters$df_clusters
 ```
 
 ## Cluster Visualization
 
-Below is a graph of non-singleton clusters computed from some 300 spanish words sampled from Miguel de Cervantes' [Don Quijote](http://www.gutenberg.org/cache/epub/2000/pg2000.txt).
+Below is a graph of non-singleton clusters computed from some 300 spanish words sampled from Miguel de Cervantes' [Don Quijote](http://www.gutenberg.org/cache/epub/2000/pg2000.txt). [Stay tuned for code entry point]
 
 ```{r,echo=F}
-knitr::include_graphics('./man/figures/quijote800.png')
+knitr::include_graphics('./man/figures/quijote800.png',
+                        dpi=72*2)
 ```
-
-Visualization code not yet exported.
 
 # Installation
 
-Currently a development version is available on github. 
+Currently a development version is available on github.
 
 ```{r,eval=F}
 # install.packages('devtools')
