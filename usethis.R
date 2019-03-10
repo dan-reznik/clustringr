@@ -1,4 +1,6 @@
 # just for reference!
+# had to do: git config remote.origin.url \
+# git@github.com:dan-reznik/clustringr.git
 pacman::p_load(
   devtools,
   usethis,
