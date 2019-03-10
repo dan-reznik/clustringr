@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-clustringr
-==========
+clustringr 0.1.0
+================
 
-`clustringr` clusters a vector of strings into groups where strings have small mutual "edit distance" (see `stringdist`). Internally it uses one of two graph algorithms: connected components, or edge-betweeness, from the `igraph` package.
+`clustringr` clusters a vector of strings into groups of small mutual "edit distance" (see `stringdist`), using graph algorithms. Notice it's unsupervised, i.e., you do not need to pre-specify cluster count.
 
 Usage
 -----
