@@ -73,22 +73,23 @@ cluster_plot(s_clust
 Supplied Data Set: Don Quijote's unique words
 ---------------------------------------------
 
-The `clustringr` package comes with `quijote_words`, a ~22k row data frame of the unique words in Cervantes' [Don Quijote](http://www.gutenberg.org/cache/epub/2000/pg2000.txt). From this word set we will sample a subset:
+The `clustringr` package comes with `quijote_words`, a ~22k row data frame of the unique words in Cervantes' [Don Quijote](http://www.gutenberg.org/cache/epub/2000/pg2000.txt).
+
+Let's sample these words into a smaller subset:
 
 ``` r
 library(dplyr)
-quijote_words_filtered <- clustringr::quijote_words %>%
-  # only terms which appear # times
+quijote_words_sampled <- clustringr::quijote_words %>%
   filter(between(freq,8,11),len>6) %>%
   pull("word")
-quijote_words_filtered%>%length
+quijote_words_sampled%>%length
 #> [1] 602
 ```
 
-To view these as a graph, showing only those clusters with at least 3 elements:
+Now let's cluster these and view the results as a graph-plot, showing only those clusters with at least 3 elements:
 
 ``` r
-quijote_words_filtered %>%
+quijote_words_sampled %>%
   cluster_strings(method="lv",max_dist=2) %>%
   cluster_plot(min_cluster_size=3)
 ```
