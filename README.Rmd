@@ -68,7 +68,7 @@ cluster_plot(s_clust
 
 ## Supplied Data Set: Don Quijote's unique words
 
-The `clustringr` package comes with `quijote_words`, a ~22k row data frame of the unique words in Cervantes' [Don Quijote](http://www.gutenberg.org/cache/epub/2000/pg2000.txt).
+The `clustringr` package comes with `quijote_words`, a ~22k row data frame of the unique words (in Spanish) in Miguel de Cervantes' "Don Quijote". Full text can be obtained [here](http://www.gutenberg.org/ebooks/2000.txt.utf-8).
 
 Let's sample these words into a smaller subset:
 
